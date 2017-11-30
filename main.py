@@ -39,11 +39,15 @@ def back_up(source_path,target_path):
 
 
 def unzip(source_file_path , target_path):
-	unzip_command = "unzip "  + source_file_path + " -d " + target_path
+	index = target_path.rfind("/")
+	target_real_path = target_path[:index]
+	unzip_command = "unzip "  + source_file_path + " -d " + target_real_path
 	exec_shell_command(unzip_command)
 
 
 def del_dir(dir_path):
+	if dir_path is None or dir_path == "":
+		return
 	command = "rm -rf " + dir_path
 	exec_shell_command(command)
 
