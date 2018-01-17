@@ -51,7 +51,32 @@ def del_dir(dir_path):
 	command = "rm -rf " + dir_path
 	exec_shell_command(command)
 
+
 property = Properties( sys.path[0] + "/config.properties").getProperties()
+arg_list = sys.argv
+
+arg_list_len = len(arg_list)
+
+if arg_list_len == 2:
+	sub_command = arg_list[1]
+	if sub_command == "stop":
+		print "stop command run !"
+		target_stop_command =  property['target']['stop']['command']
+
+		if target_stop_command is None:
+			print "not stop command in the config !"
+			sys.exit()
+
+		exec_shell_command(target_stop_command)
+
+		sys.exit()
+
+
+	else:
+		print "not found %s command " % sub_command
+		sys.exit()
+
+
 
 source_dir_path = property['source']['dir']['path']
 target_dir_path = property['target']['dir']['path']
@@ -75,7 +100,7 @@ for root, dirs, files in os.walk(target_dir_path):
 			target_path = os.path.join(root, file_name)
 
 			source_file_path = source_dir_path + "/" + file_name
-			shutil.copyfile(source_file_path ,target_path)
+			shutil.copyfile(source_file_path , )
 
 			print "-------------------------"
 			print target_path
