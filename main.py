@@ -14,7 +14,11 @@ def is_same_file_name(file_name , name_list):
 
 def exec_shell_command(command):
 	print command
-	subprocess.call(command, shell=True)
+
+	try:
+		subprocess.call(command, shell=True)
+	except Exception:
+		return None
 
 def back_up(source_path,target_path):
 
