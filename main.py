@@ -71,15 +71,25 @@ if arg_list_len == 2:
 
 		sys.exit()
 
-	if sub_command == 'log':
-		print "log command run !"
-		target_log_command = property['target']['log']['command']
+	if sub_command == 'debug':
+		print "debug command run !"
+		target_debug_info_command = property['target']['debug']['info']['command']
 
-		if target_log_command is None:
-			print "not log command in the config !"
+		if target_debug_info_command is None:
+			print "not debug info command in the config !"
 			sys.exit()
 
-		exec_shell_command(target_log_command)
+		exec_shell_command(target_debug_info_command)
+
+	if sub_command == 'start':
+		print "start command run !"
+		target_start_command = property['target']['start']['command']
+
+		if target_start_command is None:
+			print "not start command in the config !"
+			sys.exit()
+
+		exec_shell_command(target_start_command)
 
 	else:
 		print "not found %s command " % sub_command
@@ -89,7 +99,7 @@ if arg_list_len == 2:
 
 source_dir_path = property['source']['dir']['path']
 target_dir_path = property['target']['dir']['path']
-target_run_command = property['target']['run']['command']
+target_start_command = property['target']['start']['command']
 unzip_file_path = property['unzip']['file']['path']
 target_debug_info_command = property['target']['debug']['info']['command']
 back_up_dir = property['bakup']['dir']['path']
@@ -115,6 +125,6 @@ for root, dirs, files in os.walk(target_dir_path):
 			print target_path
 			print "-------------------------"
 
-exec_shell_command(target_run_command)
+exec_shell_command(target_start_command)
 exec_shell_command(target_debug_info_command)
 
