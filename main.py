@@ -71,6 +71,15 @@ if arg_list_len == 2:
 
 		sys.exit()
 
+	if sub_command == 'log':
+		print "log command run !"
+		target_log_command = property['target']['log']['command']
+
+		if target_log_command is None:
+			print "not log command in the config !"
+			sys.exit()
+
+		exec_shell_command(target_log_command)
 
 	else:
 		print "not found %s command " % sub_command
