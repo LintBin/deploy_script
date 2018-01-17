@@ -80,6 +80,7 @@ if arg_list_len == 2:
 			sys.exit()
 
 		exec_shell_command(target_debug_info_command)
+		sys.exit()
 
 	if sub_command == 'start':
 		print "start command run !"
@@ -90,6 +91,7 @@ if arg_list_len == 2:
 			sys.exit()
 
 		exec_shell_command(target_start_command)
+		sys.exit()
 
 	else:
 		print "not found %s command " % sub_command
